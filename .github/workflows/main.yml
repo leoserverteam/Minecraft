@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Clean mods Folder
         run: |
-          PROJECT_PATH="${{ secrets.DEPLOY_PATH }}/${{ github.event.repository.name }}"
+          PROJECT_PATH="${{ vars.DEPLOY_PATH }}/${{ github.event.repository.name }}"
           echo "Cleaning mods in $PROJECT_PATH"
           rm -rf "$PROJECT_PATH/minecraft-data/mods"
           mkdir -p "$PROJECT_PATH/minecraft-data/mods"
