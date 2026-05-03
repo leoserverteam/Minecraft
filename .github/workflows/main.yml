@@ -6,7 +6,18 @@ on:
       - main
 
 jobs:
+  clean-old-mods:
+    runs-on: self-hosted
+    steps:
+      - name: Clean mods Folder
+        run: |
+          PROJECT_PATH="${{ secrets.DEPLOY_PATH }}/${{ github.event.repository.name }}"
+          echo "Cleaning mods in $PROJECT_PATH"
+          rm -rf "$PROJECT_PATH/minecraft-data/mods"
+          mkdir -p "$PROJECT_PATH/minecraft-data/mods"
+
   call-deploy:
+    needs: clean-old-mods
     uses: leoserverteam/DevOpsTemplates/.github/workflows/onlycompose.yml@main
     with:
       project_name: "${{ github.event.repository.name }}"
