@@ -22,3 +22,13 @@ jobs:
     with:
       project_name: "${{ github.event.repository.name }}"
       extra_files: "minecraft-data"
+
+  restart-server:
+    needs: call-deploy
+    runs-on: self-hosted
+    steps:
+      - name: Restart Minecraft Container
+        run: |
+          PROJECT_PATH="${{ vars.DEPLOY_PATH }}/${{ github.event.repository.name }}"
+          cd "$PROJECT_PATH"
+          docker-compose restart mc 
