@@ -10,7 +10,8 @@ services:
     environment:
       EULA: "TRUE"
       TYPE: "FABRIC"          
-      VERSION: "1.21.1"       
+      VERSION: "1.21.1"
+      FABRIC_VERSION: "0.19.2"
       SEED: "1366625038414610567"
       MEMORY: "4G"
       ONLINE_MODE: "FALSE"     
